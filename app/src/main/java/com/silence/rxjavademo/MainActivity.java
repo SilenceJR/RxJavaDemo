@@ -1,13 +1,88 @@
 package com.silence.rxjavademo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
 
-public class MainActivity extends AppCompatActivity {
+import com.silence.rxjavademo.base.BaseActivity;
+import com.silence.rxjavademo.view.ToolBarCommView;
+
+import butterknife.BindView;
+
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.frame_container)
+    FrameLayout mFrameContainer;
+    @BindView(R.id.nav_view)
+    NavigationView mNavView;
+    @BindView(R.id.drawer_layoyut)
+    DrawerLayout mDrawerLayoyut;
+    @BindView(R.id.toolbar_content)
+    ToolBarCommView mToolbarContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        setTool();
+    }
+
+    private void setTool() {
+        setSupportActionBar(mToolbar);
+
+        mToolbarContent.setTitlte("我的Rx");
+
+        mToolbarContent.showBack(false);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayoyut, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayoyut.addDrawerListener(toggle);
+        toggle.syncState();
+
+        mNavView.setNavigationItemSelectedListener(this);
+    }
+
+
+    @Override
+    protected int getActivityContentView() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mDrawerLayoyut.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_search) {
+//            startActivity(SearchActivity.newIntent(this));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

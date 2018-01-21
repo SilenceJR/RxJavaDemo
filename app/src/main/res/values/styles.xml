@@ -1,11 +1,64 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--toolbar 返回键-->
+    <style name="toolbar_back">
+        <item name="android:id">@id/toolbar_back</item>
+        <item name="android:layout_height">26dp</item>
+        <item name="android:layout_width">26dp</item>
+        <item name="android:background">@drawable/toolbar_back_white_24dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <!--toolbar 标题-->
+    <style name="toolbar_title">
+        <item name="android:id">@id/toolbar_title</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">10</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_17sp</item>
+    </style>
+
+    <!--toolbar 副标题-->
+    <style name="toolbar_subtitle">
+        <item name="android:id">@id/toolbar_subtitle</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd" tools:targetApi="jelly_bean_mr1">true</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_15sp</item>
+    </style>
+
+    <!--toolbar 右边图片-->
+    <style name="toolbar_icon">
+        <item name="android:id">@id/toolbar_icon</item>
+        <item name="android:layout_height">26dp</item>
+        <item name="android:layout_width">26dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd" tools:targetApi="jelly_bean_mr1">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverly" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverly" parent="ThemeOverlay.AppCompat.Light"/>
+
 
 </resources>

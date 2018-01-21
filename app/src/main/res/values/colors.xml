@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="toolbar_start">#0094ff</color>
+    <color name="toolbar_end">#9400ff</color>
+    <color name="nva_start">#FFFFFF</color>
+    <color name="nva_end">#000000</color>
 </resources>
