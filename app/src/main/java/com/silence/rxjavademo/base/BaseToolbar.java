@@ -38,7 +38,6 @@ public class BaseToolbar extends Toolbar {
         int paddingLeft = getResources().getDimensionPixelSize(R.dimen.toolbar_padding_left);
         int paddingRight = getResources().getDimensionPixelSize(R.dimen.toolbar_padding_right);
         setPadding(getPaddingLeft() + paddingLeft, getPaddingTop(), getPaddingRight() + paddingRight, getPaddingBottom());
-        setBackgroundResource(R.drawable.bg_toolbar_comm);
     }
 
     public void setDefaultRedBg() {

@@ -6,12 +6,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.silence.rxjavademo.base.BaseActivity;
+import com.silence.rxjavademo.base.BaseToolbar;
+import com.silence.rxjavademo.fragment.TodayFragment;
 import com.silence.rxjavademo.view.ToolBarCommView;
 
 import butterknife.BindView;
@@ -19,16 +20,12 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
     @BindView(R.id.frame_container)
     FrameLayout mFrameContainer;
     @BindView(R.id.nav_view)
     NavigationView mNavView;
     @BindView(R.id.drawer_layoyut)
     DrawerLayout mDrawerLayoyut;
-    @BindView(R.id.toolbar_content)
-    ToolBarCommView mToolbarContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +35,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void setTool() {
-        setSupportActionBar(mToolbar);
+        ToolBarCommView toolBarCommView = new ToolBarCommView(this);
+        toolBarCommView.setDefTitle().showBack(false);
+        BaseToolbar baseToolbar = initToolBar(false, toolBarCommView);
+        baseToolbar.setDefaultRedBg();
 
-        mToolbarContent.setTitlte("我的Rx");
-
-        mToolbarContent.showBack(false);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayoyut, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayoyut, baseToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayoyut.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -59,6 +55,28 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.nav_today:
+                if (null == getFragmentManager().findFragmentByTag(TodayFragment.TAG)) {
+
+                }
+                break;
+            case R.id.nav_android:
+                break;
+            case R.id.nav_ios:
+                break;
+            case R.id.nav_about:
+                break;
+            case R.id.nav_feedback:
+                break;
+            default:
+                break;
+
+        }
+
         mDrawerLayoyut.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -79,10 +97,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
-//            startActivity(SearchActivity.newIntent(this));
+            //            startActivity(SearchActivity.newIntent(this));
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onError(String msg, int code) {
+
+    }
+
+    @Override
+    public void onNetFinish() {
+
     }
 }

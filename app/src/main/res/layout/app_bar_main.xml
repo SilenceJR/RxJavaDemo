@@ -8,31 +8,31 @@
     tools:context=".MainActivity"
     >
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverly">
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:theme="@style/AppTheme.AppBarOverly">-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            android:fitsSystemWindows="true"
-            android:background="@drawable/bg_toolbar_comm"
-            app:popupTheme="@style/AppTheme.PopupOverly"
-            >
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:minHeight="?attr/actionBarSize"-->
+            <!--android:fitsSystemWindows="true"-->
+            <!--android:background="@drawable/bg_toolbar_comm"-->
+            <!--app:popupTheme="@style/AppTheme.PopupOverly"-->
+            <!--&gt;-->
 
-            <com.silence.rxjavademo.view.ToolBarCommView
-                android:id="@+id/toolbar_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <!--<com.silence.rxjavademo.view.ToolBarCommView-->
+                <!--android:id="@+id/toolbar_content"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
 
-            </com.silence.rxjavademo.view.ToolBarCommView>
+            <!--</com.silence.rxjavademo.view.ToolBarCommView>-->
 
-        </android.support.v7.widget.Toolbar>
+        <!--</android.support.v7.widget.Toolbar>-->
 
-    </android.support.design.widget.AppBarLayout>
+    <!--</android.support.design.widget.AppBarLayout>-->
 
     <include layout="@layout/content_main"/>
 

@@ -18,7 +18,7 @@ public class BasePresenter<V extends IView> implements IPresenter {
     }
 
     @Override
-    public IView getView() {
+    public V getView() {
         V v = mWeakReference.get();
         if (null != v) {
             return v;
