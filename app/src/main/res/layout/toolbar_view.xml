@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.silence.rxjavademo.base.BaseToolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/base_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.silence.rxjavademo.view.ToolBarCommView
+        android:id="@+id/toolbar_comm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</com.silence.rxjavademo.base.BaseToolbar>

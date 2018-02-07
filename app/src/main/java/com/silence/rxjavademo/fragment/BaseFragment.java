@@ -7,6 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.silence.rxjavademo.base.BaseActivity;
 import com.silence.rxjavademo.base.IView;
 
 import butterknife.ButterKnife;
@@ -35,6 +39,22 @@ public abstract class BaseFragment extends Fragment implements IView {
     }
 
     protected abstract View getContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+
+    public void initRefreshLayout(SmartRefreshLayout smartRefreshLayout, OnRefreshListener onRefreshListener, boolean loadMoreEnable, OnLoadmoreListener onLoadmoreListener) {
+        assert ((BaseActivity) getActivity()) != null;
+        ((BaseActivity) getActivity()).initRefreshLayout(smartRefreshLayout, onRefreshListener, loadMoreEnable, onLoadmoreListener);
+    }
+
+    public void initToolbar(boolean showBack, View toolBarCommView) {
+        assert ((BaseActivity) getActivity()) != null;
+        ((BaseActivity) getActivity()).initToolBar(showBack, toolBarCommView);
+    }
+
+    @Override
+    public void onError(String msg, int code) {
+        assert ((BaseActivity) getActivity()) != null;
+        ((BaseActivity) getActivity()).onError(msg, code);
+    }
 
     @Override
     public void addDisposable(Disposable d) {

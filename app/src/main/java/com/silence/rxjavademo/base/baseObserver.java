@@ -10,11 +10,11 @@ import io.reactivex.disposables.Disposable;
  * @des ${TODO}
  */
 
-public abstract class baseObserver<T> implements Observer<T> {
+public abstract class BaseObserver<T> implements Observer<T> {
 
     protected final IView mView;
 
-    public baseObserver(IView view) {
+    public BaseObserver(IView view) {
         mView = view;
     }
 

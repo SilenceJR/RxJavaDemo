@@ -8,11 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.silence.rxjavademo.R;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import es.dmoral.toasty.Toasty;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -43,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
     }
 
 
-    protected BaseToolbar initToolBar(boolean showBack, View toolbarView) {
+    public BaseToolbar initToolBar(boolean showBack, View toolbarView) {
         if (null != mToolbar) {
             new IllegalArgumentException("toolbar is not null!");
         }
@@ -60,23 +65,51 @@ public abstract class BaseActivity extends AppCompatActivity implements IView{
         return mToolbar;
     }
 
-    protected void setToolbarBgColor(int color) {
-        if (null != mToolbar)
-            mToolbar.setBackgroundColor(color);
-    }
-
-    protected void hideToolbar() {
-        if (null != mToolbar)
-            mToolbar.setVisibility(View.GONE);
-    }
-
-    protected void initToolbarDefaultBg() {
-        if (null != mToolbar)
-            mToolbar.setDefaultRedBg();
-    }
-
     // 获取Activity
-    protected abstract int getActivityContentView();
+    abstract int getActivityContentView();
+
+    public void initRefreshLayout(SmartRefreshLayout smartRefreshLayout, OnRefreshListener onRefreshListener, boolean loadMoreEnable, OnLoadmoreListener onLoadmoreListener) {
+        smartRefreshLayout.setOnRefreshListener(onRefreshListener);
+        if (loadMoreEnable) {
+            smartRefreshLayout.setOnLoadmoreListener(onLoadmoreListener);
+        }
+        smartRefreshLayout.setEnableLoadmore(loadMoreEnable);
+    }
+
+    public void showToast(String msg, int type) {
+        switch (type) {
+            case ToastType.ERROR :
+                Toasty.error(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                break;
+            case ToastType.INFO:
+                Toasty.info(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                break;
+            case ToastType.NORMAL:
+                Toasty.normal(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                break;
+            case ToastType.WARNING:
+                Toasty.warning(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                break;
+            case ToastType.SUCCESS:
+                Toasty.success(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onError(String msg, int code) {
+        showToast(msg, ToastType.ERROR);
+    }
+
+    public class ToastType {
+        public static final int ERROR = 0x01;
+        public static final int INFO = 0x02;
+        public static final int NORMAL = 0x03;
+        public static final int WARNING = 0x04;
+        public static final int SUCCESS = 0x05;
+
+    }
+
 
     @Override
     public void addDisposable(Disposable d) {
